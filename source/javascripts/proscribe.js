@@ -1,72 +1,41 @@
 $(function () {
-  var urlPrefix = $("#proscribe-js").attr('src').match(/^(.*)\/[^.]+.js[\?0-9]*/)[1];
+  // Get the relative prefix for pages based on the JavaScript's path. Hax!
+  // "../javascripts/proscribe.js" means the prefix is "..".
+  var urlPrefix = $("#proscribe-js").attr('src').match(/^(.*)\/javascripts/)[1];
 
-  $("h4").each(function() {
-    var $this = $(this);
-
-    // Find the next p
-    var $p    = $this.find('+ p');
-    if (!$p.length) { $p = $this; }
-
-    var $pre = $p.find('+ pre');
-    if (!$pre.length) { return; }
-
-    // Build it
-    var $el   = $("<section class='literate'>");
-    $this.before($el);
-
-    // Move them
-    $el.append($pre);
-    $el.append($this);
-    $el.append($p);
-  });
-
-  $("pre").each(function() {
-    var $this = $(this);
-    $this.addClass('prettyprint');
-
-    // Filename
-    var r = /\[(.*?)\s*\((.*?)\)\]\n*/;
-    var m = $this.text().match(r);
-    if (m) {
-      var file = m[1];
-      var type = m[2];
-      $this.addClass('lang-'+type);
-
-      if (file.length) {
-        $this.addClass('has-caption');
-        $this.prepend($("<h5 class='caption'>").text(file));
-      }
-
-      $this.html($this.html().replace(r, ''));
-    }
-
-    // Terminal
-    if ($this.text().match(/^\s*([a-zA-Z_~\/]*)\$ /)) {
-      $this.addClass('terminal');
-      $this.removeClass('prettyprint');
-      $this.html($this.html().replace(/([a-zA-Z_~\/]*\$ )(.*?)[\r\n$]/g, "<strong><em>$1</em>$2</strong>\n"));
-    }
-  });
-
-  function searchToPages(dict) {
-    // {"0":4, "1":5} -- this is a pair of `page_id` => `result_score`.
-
-    list = _.map(dict, function(val, key) { return [key, val]; }); // {a:2} => [[a,2]] (pageid => score)
-    list = _.sortBy(list, function(a) { return -1 * a[1]; });
-    ids  = _.map(list, function(a) { return parseInt(a[0]); }); // Basically Hash#keys, now an array of page_id's
-    return _.map(ids, function(id) { return PageIndex[id] });
-  }
-  
+  // Returns pages that match a given keyword.
+  //
+  //     search("git:clone")
+  //     //=> [ { parent: 5, title: 'git:clone', type: 'Git' }, ... ]
+  //
   function search(keyword) {
-      var words = keyword.toLowerCase().split(' ');
+      var words = keyword.toLowerCase().match(/[A-Za-z0-9]+/g);
 
+      // Get results in the form of { page: score }
+      // (eg { 5: 1, 6: 1 })
       var results = {};
       _.each(words, function(word) {
-        results = SearchIndex[word];
+        _.each(Indices.search[word], function(score, id) {
+          results[id] || (results[id] = 0);
+          results[id] += score;
+        });
       });
 
       return searchToPages(results);
+  }
+
+  // Converts { page: score } pairs to pages.
+  //
+  //     searchToPages({"0":4, "1":5})
+  //     // this is a pair of { pageID: score }
+  //     //=> Array of pages
+  //
+  function searchToPages(dict) {
+
+    var list = _.map(dict, function(val, key) { return [key, val]; }); // {a:2,b:3} => [[a,2],[b,3]]
+        list = _.sortBy(list, function(a) { return -1 * a[1]; });      // Sort by score
+    var ids  = _.map(list, function(a) { return parseInt(a[0]); });    // Get array of page IDs
+    return _.map(ids, function(id) { return Indices.pages[id] });      // Resolve to pages
   }
 
   window.search = search;
@@ -98,13 +67,9 @@ $(function () {
       "<li>" + 
         "<a href='<%= url %>'>" +
           "<strong>" + 
-            "<%= title %> <span><%= type %></span>" +
+            "<%= title %> " +
+            "<% if (type) { %><span><%= type %></span><% } %>" +
           "</strong>" +
-          "<span>" +
-          "<% if (parent) { %>" + 
-            "<%= parent.title %> &rsaquo; <%= title %>" +
-          "<% } %>" +
-          "</span>" +
         "</a>" +
       "</li>");
     var keyword = $(this).val();
@@ -123,14 +88,13 @@ $(function () {
       o = _.extend({}, page);
 
       _.each(keyword.split(' '), function(word) {
-        console.log("Replacing ", word, " in ", o.title);
         o.title = o.title.replace(new RegExp(word, 'i'), function (n) {
           return "<em class='highlight'>" + n + "</em>";
         });
       });
 
       o.url = urlPrefix + page.url;
-      o.parent = PageIndex[page.parent];
+      o.parent = Indices.search[page.parent];
 
       $el.append(template(o));
     });

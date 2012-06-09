@@ -522,7 +522,7 @@ section.footer {
     display: none;
     background: white;
     font-size: 7pt;
-    width: 200px;
+    width: 250px;
     position: absolute; top: 32px; right: 0;
     z-index: 20;
 
@@ -537,7 +537,7 @@ section.footer {
       border-bottom: solid 1px #eee; }
 
     a {
-     height: 3.2em; overflow: hidden;
+     overflow: hidden;
      display: block; padding: 5px 10px; color: #999; }
 
     a span {
