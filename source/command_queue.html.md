@@ -8,6 +8,7 @@ At the heart of it, Mina is merely sugar on top of Rake to queue commands
 and execute them remotely at the end. Take a look at this minimal *deploy.rb*
 configuration:
 
+    # config/deploy.rb
     set :user, 'john'
     set :domain, 'flipstack.com'
 

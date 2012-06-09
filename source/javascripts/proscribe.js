@@ -1,7 +1,7 @@
 $(function () {
   // Get the relative prefix for pages based on the JavaScript's path. Hax!
   // "../javascripts/proscribe.js" means the prefix is "..".
-  var urlPrefix = $("#proscribe-js").attr('src').match(/^(.*)\/javascripts/)[1];
+  var urlPrefix = $("#proscribe-js").attr('src').match(/^(.*)\/?javascripts/)[1];
 
   // Returns pages that match a given keyword.
   //
@@ -31,7 +31,6 @@ $(function () {
   //     //=> Array of pages
   //
   function searchToPages(dict) {
-
     var list = _.map(dict, function(val, key) { return [key, val]; }); // {a:2,b:3} => [[a,2],[b,3]]
         list = _.sortBy(list, function(a) { return -1 * a[1]; });      // Sort by score
     var ids  = _.map(list, function(a) { return parseInt(a[0]); });    // Get array of page IDs
@@ -79,7 +78,6 @@ $(function () {
     $el.show();
     $el.html('');
 
-
     // Limit results
     results = results.slice(0, 12);
 
@@ -87,6 +85,7 @@ $(function () {
       // Build the options for the tempalte
       o = _.extend({}, page);
 
+      // Highlight.
       _.each(keyword.split(' '), function(word) {
         o.title = o.title.replace(new RegExp(word, 'i'), function (n) {
           return "<em class='highlight'>" + n + "</em>";
@@ -114,9 +113,35 @@ $(function () {
     $results.find('>:first-child').addClass('active');
   });
 
-
   $("body").live('click', function() {
     $("#search .results").hide();
+  });
+});
+
+// ----------------------------------------------------------------------------
+// Pretty print
+// ----------------------------------------------------------------------------
+
+$(function() {
+  $("pre").each(function() {
+    var text = $(this).text();
+    text = text.replace(/^[ \n\t]*|[ \n\t]*$/g, '');
+    var line = text.match(/^(.*?)[$\n]/)[1];
+
+    // Terminalify those that begin with `$ `.
+    if (text[0] == '$') {
+      $(this).addClass('terminal');
+    }
+
+    // Those that have `# foo.rb` as the first line, highlight.
+    var m = line.match(/^# (.*\.([a-z]{2,3}))$/);
+    if (m) {
+      var rest = text.match(/\n((?:.|\n)*)$/m)[1];
+      $(this).addClass('prettyprint');
+      $(this).addClass('lang-'+m[2]);
+      $(this).addClass('has-caption');
+      $(this).html("<h5>"+m[1]+"</h5>" + rest);
+    }
   });
 
   prettyPrint();
