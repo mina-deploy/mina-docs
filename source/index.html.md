@@ -1,6 +1,6 @@
 ---
-title: Mina documentation
-order: 1
+title: Mina
+order: 0
 brief: Really fast deployer and server automation tool.
 ---
 

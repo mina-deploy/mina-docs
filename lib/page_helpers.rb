@@ -12,7 +12,7 @@ module PageHelpers
   end
 
   def index
-    Page.glob('index').first
+    Page.glob('index.html.*').first
   end
 
   def site_name
