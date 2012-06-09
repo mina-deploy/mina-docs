@@ -3,12 +3,12 @@
   %head
     %title= here.title
 
-    %data(charset='UTF-8')
+    %meta(charset='UTF-8')
     -# Use the latest IE engine, or Chrome frame.
-    %data(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+    %meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
 
     -# Mobile viewport optimization. j.mp/bplateviewport
-    %data(name='viewport' content='width=device-width, initial-scale=1.0')
+    %meta(name='viewport' content='width=device-width, initial-scale=1.0')
 
     -# Standard SEO data
     -# - if here.data.keywords
@@ -41,8 +41,6 @@
             %strong= here
 
           %hgroup
-            - if here.data.layout
-              %p.type= here.data.layout.capitalize
             %h1= here.title
             - if here.data.brief
               %h5= here.data.brief
@@ -54,20 +52,19 @@
 
             != yield
 
-            != partial '_templates/subindex', :locals => { :from => here }
-            - if here.data.inherits
-              - heres = here.data.inherits.split(' ').map { |path| Proton::here[path] }
-              != partial '_templates/subindex', :locals => { :from => heres, :suffix => "(Inherited)" }
+            -# != partial '_templates/subindex', :locals => { :from => here }
 
-            -# Source
+            -# ----------------------------------------------------------------------------
+            -# Footer
+            -# ----------------------------------------------------------------------------
             %section.footer
               .left
                 %strong
-                  - here.breadcrumbs[1...-1].each do |pp|
+                  - here.breadcrumbs.each do |pp|
                     %a{href: rel(here.path)}
                       = pp.title
-                      -# if pp.data.here_type
-                      -#  %span.type= pp.data.here_type
+                      -# if pp.data['type']
+                      -#  %span.type= pp.data['type']
 
                     %span.arrow!= "&rsaquo;"
 
@@ -81,22 +78,24 @@
                     %span= here.source_file
                     %span.view-source!= "View source &rsaquo;"
 
+        -# ----------------------------------------------------------------------------
+        -# Sidebar
+        -# ----------------------------------------------------------------------------
         %nav#nav
           - parent   = (here.children.any? ? here : (here.parent || here))
-          - children = parent.children.select { |p| p.html? && p.path =~ /.html$/ }
-          - groups   = children.group_by { |p| p.data.here_type }
+          - children = here.children.any? ? here.children : here.siblings
+          - groups   = children.groups(:type)
 
-          - if parent && !parent.root?
-            %nav.parents
-              %ul
-                - parent.breadcrumbs.each do |pp|
-                  %li
-                    %a{href: rel(pp.path), class: ('active' if pp.path == here.path)}
-                      - unless pp.path == here.path
-                        %span.back!= "&lsaquo;"
+          %nav.parents
+            %ul
+              - parent.breadcrumbs.each do |pp|
+                %li
+                  %a{href: rel(pp.path), class: ('active' if pp.path == here.path)}
+                    - unless pp.path == here.path
+                      %span.back!= "&lsaquo;"
 
-                      %em= pp.data.here_type
-                      = pp
+                    %em= pp.data['type']
+                    = pp
 
           - if groups.any?
             - groups.each do |name, heres|
