@@ -94,6 +94,7 @@ class Page
 
   def self.glob(spec, except=nil)
     fullspec = File.join(source_path, spec)
+    p "globbing #{fullspec}", Dir[fullspec]
     list = Dir[fullspec].map do |f|
       Page[ f[(source_path.length + 1)..-1] ]
     end.sort
@@ -107,7 +108,7 @@ class Page
   end
 
   def self.roots
-    glob('*.html.*') + glob('*/index.html.*')
+    Pages.new(glob('*.html.*') + glob('*/index.html.*'))
   end
 
   def sort_index
@@ -179,35 +180,34 @@ class Page
   end
 
   def children
-    @children ||= if @basename == 'index' && !root?
+    list = if @basename == 'index' && !root?
       (Page.glob(File.join(@dir, '*.html.*'), self) +
       Page.glob(File.join(@dir, '*', 'index.html.*'), self)).sort
     else
       (Page.glob(File.join(@dir, @basepath, '*.html.*'), self) +
       Page.glob(File.join(@dir, @basepath, '*', 'index.html.*'), self)).sort
     end
-  end
 
-  def all_siblings
-    @all_siblings ||= begin
-      list = if @basename == 'index' && !root?
-        (Page.glob(File.join(@parent_dir, '*.html.*')) +
-        Page.glob(File.join(@parent_dir, '*', 'index.html.*'))).sort
-      else
-        (Page.glob(File.join(@dir, '*.html.*')) +
-        Page.glob(File.join(@dir, '*', 'index.html.*'))).sort
-      end
-      list = list.reject { |p| p.basename == 'index' }
-      list
-    end
+    Pages.new list
   end
 
   def siblings
-    @siblings ||= begin
-      list = all_siblings.dup
-      list.delete self
-      list
+    if @basename == 'index' && !root?
+      list = (Page.glob(File.join(@parent_dir, '*.html.*')) +
+      Page.glob(File.join(@parent_dir, '*', 'index.html.*'))).sort
+    else
+      list = Page.glob(File.join(@dir, '*.html.*'))
+      list = list.reject { |p| p.basename == 'index' }
+      list += Page.glob(File.join(@dir, '*', 'index.html.*'))
+      list = list.sort
     end
+    Pages.new list
+  end
+end
+
+class Pages < Array
+  def groups(attribute='type')
+    group_by { |p| p.data[attribute.to_s] }
   end
 end
 

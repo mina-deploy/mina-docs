@@ -589,3 +589,20 @@ li.L3,
 li.L5,
 li.L7,
 li.L9 { background: #eee }
+
+.content {
+  h2, h3, p {
+    clear: left; }
+
+  p, ul {
+    float: left;
+    width: 40%; }
+
+  h2, h3 {
+    clear: both; }
+
+  pre {
+    margin: 20px 0 20px 20px;
+    width: 50%;
+    float: right; }
+}

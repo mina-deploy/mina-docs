@@ -9,12 +9,11 @@ Let's deploy a project using Mina.
 
 In your project, type `mina init` to create a sample of this file.
 
-This is just a Rake file with tasks!
-
     $ mina init
     Created config/deploy.rb.
 
-See [About deploy.rb](#about_deployrb) for more info on what *deploy.rb* is.
+This is just a Rake file with tasks! See [About deploy.rb](#about_deployrb) for 
+more info on what *deploy.rb* is.
 
 ### Step 2: Set up your server
 
