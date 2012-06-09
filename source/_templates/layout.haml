@@ -84,9 +84,9 @@
         -# Sidebar
         -# ----------------------------------------------------------------------------
         %nav#nav
-          - parent   = (here.children.any? ? here : (here.parent || here))
+          - parent   = (here.children.any? ? here : here.parent) || here
           - children = here.children.any? ? here.children : here.siblings
-          - groups   = children.groups(:type)
+          - groups   = children.groups(:group)
 
           %nav.parents
             %ul

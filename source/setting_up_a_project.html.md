@@ -1,6 +1,7 @@
 ---
 title: Setting up a project
 order: 1
+group: Getting started
 ---
 
 Let's deploy a project using Mina.

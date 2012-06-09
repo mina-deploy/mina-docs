@@ -588,9 +588,13 @@ li.L9 { background: #eee }
   h2, h3, p {
     clear: left; }
 
-  p, ul {
+  p {
     float: left;
     width: 40%; }
+
+  ul p {
+    width: 100%;
+    float: none; }
 
   h2, h3 {
     clear: both; }
@@ -599,7 +603,4 @@ li.L9 { background: #eee }
     margin: 20px 0 20px 20px;
     width: 50%;
     float: right; }
-
-  pre + * {
-    clear: both; }
 }

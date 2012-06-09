@@ -1,6 +1,7 @@
 ---
 title: About deploy.md
 order: 2
+group: Getting started
 ---
 
 The file `deploy.rb` is simply a Rakefile invoked by Rake. In fact, `mina` is
