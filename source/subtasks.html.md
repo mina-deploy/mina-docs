@@ -7,6 +7,7 @@ group: Getting started
 Mina provides the helper `invoke` to invoke other tasks from a
 task.
 
+    # config/deploy.rb
     task :down do
       invoke :maintenance_on
       invoke :restart

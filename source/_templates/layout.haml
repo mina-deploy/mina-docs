@@ -61,8 +61,8 @@
             %section.footer
               .left
                 %strong
-                  - here.breadcrumbs.each do |pp|
-                    %a{href: rel(here.path)}
+                  - here.breadcrumbs[0..-2].each do |pp|
+                    %a{href: rel(pp.path)}
                       = pp.title
                       - if pp.data['type']
                         %span.type= pp.data['type']
