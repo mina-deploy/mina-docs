@@ -5,8 +5,17 @@ helpers do
   def here
     Page.glob(request.path + '.*').first
   end
+
   def roots
     Page.roots
+  end
+
+  def index
+    Page.glob('index').first
+  end
+
+  def site_name
+    index ? index.title : "Site"
   end
 
   # Relativize
@@ -20,6 +29,27 @@ helpers do
     path = '../' * depth + url
 
     path.squeeze('/')
+  end
+
+  def page_children(page)
+    children = page.children
+    of_type  = lambda { |str| children.select { |p| p.data['type'] == str } }
+
+    children.
+      group_by { |p|
+        type = p.data['type']
+        type.nil? ? nil : Inflector[type].pluralize.to_sym
+      }
+  end
+
+  # A link to the source file on GitHub
+  def github_source_link
+    nil
+    # if project.config.github && project.config.git
+    #   if page.meta.source_file
+    #     "https://github.com/#{project.config.github}/blob/#{project.config.git[0..6]}/#{page.source_file}#L#{page.source_line}".squeeze('/')
+    #   end
+    # end
   end
 end
 
