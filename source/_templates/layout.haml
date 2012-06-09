@@ -65,8 +65,8 @@
                   - here.breadcrumbs.each do |pp|
                     %a{href: rel(here.path)}
                       = pp.title
-                      -# if pp.data['type']
-                      -#  %span.type= pp.data['type']
+                      - if pp.data['type']
+                        %span.type= pp.data['type']
 
                     %span.arrow!= "&rsaquo;"
 
@@ -101,7 +101,7 @@
 
           - if groups.any?
             - groups.each do |name, heres|
-              - name = name ? Inflector[name].pluralize.capitalize : parent.to_s
+              - name = name ? name : parent.to_s
               %nav
                 - if name
                   %h4= name

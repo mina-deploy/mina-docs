@@ -38,7 +38,7 @@ helpers do
     children.
       group_by { |p|
         type = p.data['type']
-        type.nil? ? nil : Inflector[type].pluralize.to_sym
+        type # pluralize me
       }
   end
 
@@ -94,7 +94,6 @@ class Page
 
   def self.glob(spec, except=nil)
     fullspec = File.join(source_path, spec)
-    p "globbing #{fullspec}", Dir[fullspec]
     list = Dir[fullspec].map do |f|
       Page[ f[(source_path.length + 1)..-1] ]
     end.sort
