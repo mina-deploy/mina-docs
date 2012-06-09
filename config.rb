@@ -182,3 +182,15 @@ class Page
 end
 
 set :layout, :'_templates/layout'
+
+# class Injectah
+#   def manipulate_resource_list(resources)
+#     resources + ::Middleman::Sitemap::Resource.new(
+#       ::Middleman::Application.server.inst.sitemap,
+#       '/x.js',
+#       '/home/me/real_path_to_x.js'
+#     )
+#   end
+# end
+
+# sitemap.register_resource_list_manipulator :injectah, Injectah.new, false

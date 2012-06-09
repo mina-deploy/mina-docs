@@ -9,23 +9,22 @@
   %body{class: page_classes}
   #sidebar
     %h3 Parent:
-    - if here && here.parent?
+    - if here.parent?
       %a{href: rel(here.parent.path)}= here.parent
     %h3 Roots:
     %ul
       - roots.each do |page|
         %li
           %a{href: rel(page.path)}= page
-    - if here
-      %h3 Children:
-      %ul
-        - here.children.each do |page|
-          %li
-            %a{href: rel(page.path)}= page
-      %h3 Siblings:
-      %ul
-        - here.all_siblings.each do |page|
-          %li
-            %a{href: rel(page.path)}= page
+    %h3 Children:
+    %ul
+      - here.children.each do |page|
+        %li
+          %a{href: rel(page.path)}= page
+    %h3 Siblings:
+    %ul
+      - here.all_siblings.each do |page|
+        %li
+          %a{href: rel(page.path)}= page
   #main
     = yield
