@@ -97,7 +97,7 @@ class Page
     list = Dir[fullspec].map do |f|
       Page[ f[(source_path.length + 1)..-1] ]
     end.sort
-    list.delete except  if except
+    list = list.reject { |p| p.path == except.path }  if except
     list
   end
 
@@ -151,10 +151,13 @@ class Page
 
   def parent
     if @basename == 'index'
+      # ./tasks/index.html is a child of ./index.html
       Page.glob(File.join(@parent_dir, 'index.html.*'), self).first
     else
+      # ./tasks/git_clone.html is a child of ./tasks/index.html,
+      # or ./tasks.html
       Page.glob(File.join(@dir, 'index.html.*'), self).first ||
-      Page.glob(File.join(@parent_dir, "#{basename}.html.*"), self).first
+      Page.glob(File.join(@parent_dir, "#{File.basename(@dir)}.html.*"), self).first
     end
   end
 
@@ -205,7 +208,7 @@ class Page
 end
 
 class Pages < Array
-  def groups(attribute='type')
+  def groups(attribute='group')
     group_by { |p| p.data[attribute.to_s] }
   end
 end
