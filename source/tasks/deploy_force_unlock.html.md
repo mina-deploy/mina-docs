@@ -1,6 +1,7 @@
 ---
 title: deploy:force_unlock
 group: Deploy tasks
+brief: Removes the deploy lock file.
 ---
 
 Removes the deploy lock file. If a deploy is terminated midway, it may leave a

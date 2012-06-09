@@ -89,9 +89,10 @@ a:hover { color: $link * 0.9; }
   font-weight: bold;
 }
 
-//
-// Tabs
-//
+/* ============================================================================
+ * Tabs
+ * ============================================================================ */
+
 #crumbs {
   & {
     position: absolute; top: -26px; left: 0;
@@ -105,7 +106,8 @@ a:hover { color: $link * 0.9; }
     padding: 0 45px 0 8px; }
 
   a {
-    text-decoration: none; color: #ddd;
+    text-decoration: none;
+    color: #ddd;
     text-shadow: 1px 1px 0 rgba(black, 0.2);
     background: rgba(black, 0.2); }
 
@@ -145,9 +147,10 @@ $pad: 40px;
     0 3px 4px rgba(black, 0.1));
 }
 
-//
-// Top heading
-//
+/* ============================================================================
+ * Top heading
+ * ============================================================================ */
+
 #content hgroup {
   background: $heading;
   margin: $pad * -1;
@@ -210,12 +213,18 @@ $pad: 40px;
   }
 }
 
+/* ============================================================================
+ * Sidebar
+ * ============================================================================ */
+
 #nav {
   & {
     float: left;
     width: 200px;
     overflow: hidden;
-    position: relative; top: -5px; left: $pad * -1;
+    position: relative;
+    top: -5px;
+    left: $pad * -1;
     margin-left: -100%; }
 
   & {
@@ -225,11 +234,12 @@ $pad: 40px;
     position: relative;
     line-height: 24px;
     @include border-left-radius(4px);
-    color: #fff; text-shadow: 1px 1px 0 rgba(black, 0.2);
+    color: #888;
+    text-shadow: 1px 1px 0 rgba(white, 0.2);
     padding: 1px 5px; display: block; text-decoration: none; }
 
   a:hover {
-    background: rgba($dark, 0.1); }
+    background: rgba(white, 0.2); }
 
   nav.parents a.active,
   a.active {
@@ -599,6 +609,9 @@ li.L9 { background: #eee }
 
   h2, h3 {
     clear: both; }
+
+  p:first-child + pre {
+    margin-top: 0; }
 
   pre {
     margin: 20px 0 20px 20px;
