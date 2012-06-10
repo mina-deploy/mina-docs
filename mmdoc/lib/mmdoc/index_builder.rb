@@ -32,7 +32,7 @@ module Mmdoc
       @pages.inject([]) { |h, p|
         h << {
           :title => p.to_s,
-          :url => p.path,
+          :url => p.url,
           :type => p.data['group'],
           :parent => (urls.index(p.parent.path) if p.parent?) }
         h

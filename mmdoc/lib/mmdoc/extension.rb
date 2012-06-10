@@ -11,6 +11,14 @@ module Mmdoc
       def registered(app, options={})
         ::Middleman::Sitemap::Resource.send :include, PageExtensions
         app.helpers PageHelpers
+
+        # Hack fix!
+        # https://github.com/middleman/middleman/issues/474
+        app.ready do
+          unless sitemap.find_resource_by_path('/')
+            require File.expand_path('../../../ext/relative_path_fix.rb', __FILE__)
+          end
+        end
       end
     end
   end
