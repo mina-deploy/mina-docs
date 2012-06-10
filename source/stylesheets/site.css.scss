@@ -277,8 +277,8 @@ $pad: 40px;
     padding: 10px 0; }
 
   // Moar
-  a.more::after {
-    display: block; content: '>';
+  a.more:after {
+    display: block; content: '\203a';
     position: relative; top: -2px;
     font-size: 1.4em;
     padding-right: 10px;
@@ -317,7 +317,14 @@ $pad: 40px;
       margin-bottom: 1px;
       background: rgba(white, 0.3); }
 
+    a.more:after {
+      display: none; }
+
     span.back {
+      display: none; }
+
+    a:not(.active):before {
+      content: '\2039';
       display: inline-block;
       text-align: center;
       font-size: 1.3em;
@@ -461,7 +468,7 @@ section.aux-links {
     background: #eee; }
 
   a::after {
-    content: '>'; color: #aaa;
+    content: '\203a'; color: #aaa;
     font-size: 1.5em;
     float: right; }
 
