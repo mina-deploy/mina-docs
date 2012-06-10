@@ -6,6 +6,8 @@ set :layout, :'_templates/layout'
 set :github, 'nadarei/mina'
 set :relative_links, true
 
+helpers Mmdoc::AnalyticsHelpers
+
 configure :build do
   compass_config do |config|
     config.output_style = :compact
