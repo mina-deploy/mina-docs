@@ -1,7 +1,7 @@
 PATH
-  remote: ./scribe
+  remote: ./mmdoc
   specs:
-    scribe (0.0.1)
+    mmdoc (0.0.1)
       middleman-core (>= 3.0.0.rc.1)
 
 GEM
@@ -110,4 +110,4 @@ PLATFORMS
 
 DEPENDENCIES
   middleman (= 3.0.0.rc.1)
-  scribe!
+  mmdoc!

@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name = "scribe"
+  s.name = "mmdoc"
   s.version = "0.0.1"
   s.summary = ""
   s.description = ""

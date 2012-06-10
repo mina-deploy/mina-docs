@@ -1,3 +1,3 @@
-//= require scribe-search
-//= require scribe-pre
-//= require search_index
+//= require mmdoc-search
+//= require mmdoc-pre
+//= require mmdoc-index

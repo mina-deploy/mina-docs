@@ -1,8 +1,6 @@
-require 'scribe_extension'
-
 activate :automatic_image_sizes
 activate :relative_assets
-activate :scribe
+activate :mmdoc
 
 set :layout, :'_templates/layout'
 set :github, 'nadarei/mina'

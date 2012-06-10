@@ -1,1 +1,0 @@
-require 'scribe_extension'
