@@ -1,5 +1,5 @@
 ---
-title: releases_path
+title: lock_file
 group: Deploy settings
 brief: The path to the deploy lock file.
 ---
