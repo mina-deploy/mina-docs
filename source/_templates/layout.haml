@@ -11,10 +11,10 @@
     %meta(name='viewport' content='width=device-width, initial-scale=1.0')
 
     -# Standard SEO data
-    -# - if here.data.keywords
-    -#   %data{:name => 'keywords', :content => here.data.keywords}
-    -# - if here.data.description
-    -#   %data{:name => 'description', :content => here.data.description}
+    - if here.data.keywords
+      %data{:name => 'keywords', :content => here.data.keywords}
+    - if here.data.description
+      %data{:name => 'description', :content => here.data.brief}
 
     = stylesheet_link_tag 'site.css'
 
