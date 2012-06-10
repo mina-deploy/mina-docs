@@ -9,8 +9,8 @@ module Mmdoc
       end
 
       def registered(app, options={})
+        ::Middleman::Sitemap::Resource.send :include, PageExtensions
         app.helpers PageHelpers
-        app.helpers MiscHelpers
       end
     end
   end

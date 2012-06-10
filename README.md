@@ -19,7 +19,12 @@ To do
 
  * Flesh out 'Command line options'
  * A 'defining tasks' section
+ * 'About deploy.rb' should have a reference to defining tasks
  * More heplers
+ * Recipes section
+ * Recipe: multiple environments
+ * Recipe: tasks with arguments
+ * Link to GH issues / Trello
 
 [doc]: http://nadarei.co/mina
 

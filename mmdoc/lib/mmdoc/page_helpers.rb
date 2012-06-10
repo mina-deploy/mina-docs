@@ -6,22 +6,28 @@ module Mmdoc
     #
     # Returns a Page instance.
     def here
-      Page.glob(request.path + '.*').first
+      sitemap.find_resource_by_destination_path(request.path)
     end
 
     # Public: Returns an array of all pages in the site.
     def all_pages
-      Page.all
+      sitemap.resources
+    end
+
+    # Returns index data for the entire site.
+    def site_indices
+      i = IndexBuilder.new(all_pages)
+      i.indices
     end
 
     # Public: Returns the top-level pages. Best used for top-level navigation.
     def roots
-      Page.roots
+      all_pages.select { |page| page.root? }
     end
 
     # Public: Returns the main index page.
     def index
-      Page.glob('index.html.*').first
+      sitemap.find_resource_by_destination_path '/'
     end
 
     # Public: Returns the name of the site.
@@ -40,8 +46,8 @@ module Mmdoc
     #   #    ... }
     #
     def nav_groups
-      children = here.children.any? ? here.children : here.siblings
-      groups = children.groups
+      children = here.children.any? ? here.children : here.all_siblings
+      groups = children.group_by { |p| p.data['group'] }
       groups[here.title] = groups.delete("")  if groups[""]
       groups
     end

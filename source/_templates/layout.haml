@@ -11,10 +11,10 @@
     %meta(name='viewport' content='width=device-width, initial-scale=1.0')
 
     -# Standard SEO data
-    - if here.data.keywords
-      %data{:name => 'keywords', :content => here.data.keywords}
-    - if here.data.description
-      %data{:name => 'description', :content => here.data.brief}
+    - if here.data['keywords']
+      %data{:name => 'keywords', :content => here.data['keywords'].join(', ')}
+    - if here.data['brief']
+      %data{:name => 'description', :content => here.data['brief']}
 
     = stylesheet_link_tag 'site.css'
 
@@ -26,8 +26,7 @@
 
   %body
     #top
-      %a#logo{href: rel('/')}
-        = site_name
+      = link_to site_name, '/', id: 'logo'
 
     #area
       #content
@@ -46,19 +45,19 @@
 
           #crumbs
             - here.breadcrumbs[0..-2].each do |p|
-              %a{href: rel(p.path)}= p
+              = link_to p, p.url
 
             %strong= here
 
           %hgroup
             %h1= here.title
-            - if here.data.brief
-              %h5= here.data.brief
+            - if here.data['brief']
+              %h5= here.data['brief']
 
           .content
-            - if here.data.usage
+            - if here.data['usage']
               %h2 Usage
-              %pre= here.data.usage
+              %pre= here.data['usage']
 
             != yield
 
@@ -68,11 +67,13 @@
             %section.footer
               .left
                 %strong
-                  - here.breadcrumbs[0..-2].each do |pp|
-                    %a{href: rel(pp.path)}
-                      = pp.title
-                      - if pp.data['type']
-                        %span.type= pp.data['type']
+                  - here.breadcrumbs[0..-2].each do |page|
+                    - html = capture_haml do
+                      = page.title
+                      - if page.data['type']
+                        %span.type= page.data['type']
+
+                    = link_to html, page.url
 
                     %span.arrow!= "&rsaquo;"
 
@@ -83,16 +84,13 @@
         -# ----------------------------------------------------------------------------
         %nav#nav
           .logo
-            %a{href: rel('/')}
-              = image_tag 'logo.png', width: 150
+            = link_to image_tag('logo.png', width: 150), '/'
 
           %nav.parents
             %ul
               - nav_breadcrumbs.each do |page|
                 %li
-                  %a{href: rel(page.path), class: item_class(page)}
-                    %span.back!= "&lsaquo;"
-                    = page
+                  = link_to page, page.url, class: item_class(page)
 
           - nav_groups.each do |name, pages|
             %nav
@@ -100,5 +98,4 @@
               %ul
                 - pages.each do |page|
                   %li
-                    %a{href: rel(page.path), class: item_class(page)}
-                      = page
+                    = link_to page, page.url, class: item_class(page)
