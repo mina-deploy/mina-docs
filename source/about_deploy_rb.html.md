@@ -1,5 +1,5 @@
 ---
-title: About deploy.md
+title: About deploy.rb
 order: 2
 group: Getting started
 ---

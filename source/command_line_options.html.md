@@ -1,6 +1,7 @@
 ---
 title: Command line options
 group: API
+order: 30
 ---
 
 Basic usage:

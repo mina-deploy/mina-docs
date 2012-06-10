@@ -1,7 +1,7 @@
 ---
 title: Tasks
 group: API
-order: 30
+order: 32
 ---
 
 You may define your own tasks just as you would in Rake, but these tasks come

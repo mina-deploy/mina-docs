@@ -1,6 +1,7 @@
 ---
 title: Settings
 group: API
+order: 32
 ---
 
 Settings are managed using the `set` and `settings` methods. This convention is
