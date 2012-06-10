@@ -17,6 +17,9 @@ Development
 To do
 -----
 
+ * Update bundle:install with correct example
+ * git:clone example
+ * assets:precompile example
  * Flesh out 'Command line options'
  * A 'defining tasks' section
  * 'About deploy.rb' should have a reference to defining tasks
@@ -25,6 +28,8 @@ To do
  * Recipe: multiple environments
  * Recipe: tasks with arguments
  * Link to GH issues / Trello
+ * run! helper
+
 
 [doc]: http://nadarei.co/mina
 

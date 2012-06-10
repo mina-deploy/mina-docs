@@ -1,5 +1,5 @@
 ---
-title: verbose_mode
+title: verbose_mode?
 group: Helpers
 ---
 
@@ -7,7 +7,7 @@ Checks if Rake was invoked with `--verbose`.
 
     # .rb
     task :solr_restart do
-      puts "Restarting solr..."  if verbose_mode
+      puts "Restarting solr..."  if verbose_mode?
       queue echo_cmd "sudo service solr restart"
     end
 

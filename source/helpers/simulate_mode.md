@@ -1,5 +1,5 @@
 ---
-title: simulate_mode
+title: simulate_mode?
 group: Helpers
 ---
 
@@ -7,7 +7,7 @@ Checks if Rake was invoked with `--simulate`.
 
     # .rb
     task :git_check do
-      revision = if simulate_mode
+      revision = if simulate_mode?
         'master'
       else
         `git rev-parse HEAD`.strip
