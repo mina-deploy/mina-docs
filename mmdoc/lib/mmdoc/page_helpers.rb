@@ -27,7 +27,7 @@ module Mmdoc
 
     # Public: Returns the main index page.
     def index
-      sitemap.find_resource_by_destination_path '/'
+      sitemap.find_resource_by_destination_path '/index.html'
     end
 
     # Public: Returns the name of the site.

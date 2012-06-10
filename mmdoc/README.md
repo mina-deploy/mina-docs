@@ -32,3 +32,20 @@ brief: This is awesome.
 ```
 
 Go and use the PageHelpers in your layout.
+
+What the hell for?
+------------------
+
+Extends middleman with the following stuff:
+
+ * You get cool helpers from PageHelpers, like `#here` which gives you the
+ current Sitemap resource for the current page.
+
+ * Sitemap resources get some convenient extensions, like '#title' and
+ '#breadcrumbs'
+
+ * You can get a site index using `site_indices` which is great for in-JS 
+ searching
+
+ * You get some JavaScripts you can use in the pipeline, like `mmdoc-search`
+(search field JS) and mmdoc-pre (pretty printer)
