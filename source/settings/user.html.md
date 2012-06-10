@@ -1,6 +1,6 @@
 ---
 title: user
-group: SSH
+group: SSH settings
 brief: Username to connect to SSH with. Optional.
 ---
 

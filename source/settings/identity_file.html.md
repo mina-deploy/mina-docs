@@ -1,6 +1,6 @@
 ---
 title: identity_file
-group: SSH
+group: SSH settings
 brief: Local path to the SSH key to use. Optional.
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: domain
-group: SSH
+group: SSH settings
 brief: Hostname to SSH to. Required.
 ---
 
