@@ -418,8 +418,11 @@ pre.terminal {
     font-size: 1.1em;
     color: #8d8; font-weight: normal; }
 
-  strong em {
+  em {
     font-style: normal;
+    color: #777; }
+
+  strong em {
     color: #8d8 * 0.5; }
 }
 
