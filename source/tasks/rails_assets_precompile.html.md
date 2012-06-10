@@ -1,16 +1,18 @@
 ---
-title: rails:db_migrate
+title: rails:assets_precompile
 group: Rails tasks
+brief: Precompiles Rails assets.
 ---
 
-Invokes rake to migrate the database using `rake db:migrate`.
+Precompiles assets. This invokes `rake assets:precompile`. This is relevant to
+Rails 3.1+ projects.
 
     # config/deploy.rb
     require 'mina/git'
     require 'mina/bundler'
-    
+
     # ... settings here
-    
+
     task :deploy do
       deploy do
         invoke :'git:clone'
@@ -20,7 +22,8 @@ Invokes rake to migrate the database using `rake db:migrate`.
       end
     end
 
-This is used as an `invoke`d subtask.
+It also checks the current version to see if it has assets compiled. If it does,
+it reuses them, skipping the compilation step. To stop this behavior, invoke
+the `mina` command with `force_assets=1`.
 
 To use this, you must add `require 'mina/rails'` to your *deploy.rb*.
-

@@ -1,9 +1,8 @@
 ---
 title: deploy_to
-group: deploy
+group: Deploy settings
 brief: Path to deploy to. Required.
 ---
-
 
 Path to deploy to. *Required.*
 

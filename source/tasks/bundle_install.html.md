@@ -1,6 +1,6 @@
 ---
 title: bundle:install
-group: Bundler
+group: Bundler tasks
 ---
 
 Invokes `bundle:install` on the current directory, creating the bundle

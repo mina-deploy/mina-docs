@@ -1,9 +1,9 @@
 ---
 title: git:clone
-group: Git
+group: Git tasks
 ---
 
-Clones the git repository defined in [:repository](/settings/repository.html).
+Clones the git repository defined in [:repository](../settings/repository.html).
 Usually used in deploy scripts.
 
     # config/deploy.rb
