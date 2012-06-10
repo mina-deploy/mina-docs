@@ -1,30 +1,33 @@
 module Mmdoc
-  # Page model.
+  # Public: Page model.
   #
-  #     # Lookup by filename
-  #     Page['index.html.haml']           #=> Page instance or nil
-  #     Page.glob 'index.html.*'          #=> Array of Pages
+  # Lookup usage
   #
+  #   # Lookup by filename
+  #   Page['index.html.haml']           #=> Page instance or nil
+  #   Page.glob 'index.html.*'          #=> Array of Pages
   #
-  # Metadata:
+  #   Page.new 'index.html.haml'
   #
-  #     page.title             #=> "Getting started"
-  #     page.basename          #=> "getting_started"
-  #     page.path              #=> "/getting_started/index.html"
-  #     page.data              #=> Hash
-  #     page.template_type     #=> "haml"
-  #     page.raw               #=> String (raw template data)
-  #     page.content           #=> String
+  # Metadata usage
   #
-  # Tree traversal:
+  #   page.title             #=> "Getting started"
+  #   page.basename          #=> "getting_started"
+  #   page.path              #=> "/getting_started/index.html"
+  #   page.data              #=> Hash
+  #   page.template_type     #=> "haml"
+  #   page.raw               #=> String (raw template data)
+  #   page.content           #=> String
   #
-  #     page.parent?           #=> True/false
-  #     page.parent            #=> Page, or nil if it's a root
-  #     page.root?             #=> True if depth = 0
-  #     page.depth             #=> Number, minimum of 0
-  #     page.breadcrumbs       #=> Array of ancestors
-  #     page.children          #=> Array
-  #     page.siblings          #=> Array
+  # Tree traversal usage
+  #
+  #   page.parent?           #=> True/false
+  #   page.parent            #=> Page, or nil if it's a root
+  #   page.root?             #=> True if depth = 0
+  #   page.depth             #=> Number, minimum of 0
+  #   page.breadcrumbs       #=> Array of ancestors
+  #   page.children          #=> Array
+  #   page.siblings          #=> Array
   #
   class Page
     attr_reader :path
@@ -38,6 +41,14 @@ module Mmdoc
       'source'
     end
 
+    # Internal: Globs for a given filespec.
+    # Returns an array of pages.
+    #
+    # Example
+    #
+    #   glob('tasks/index.html.*')
+    #   # Looks at 'source/tasks/index.html.*'
+    #
     def self.glob(spec, except=nil)
       fullspec = File.join(source_path, spec)
       list = Dir[fullspec].map do |f|
@@ -56,6 +67,7 @@ module Mmdoc
       Pages.new(glob('*.html.*') + glob('*/index.html.*'))
     end
 
+    # Public: Returns all pages in the project.
     def self.all
       list = Array.new
       work = lambda { |page|
@@ -75,10 +87,12 @@ module Mmdoc
       sort_index <=> other.sort_index
     end
 
+    # Internal: Returns the main Middleman Application instance.
     def self.mm_server
       ::Middleman::Application.server.inst
     end
 
+    # Internal: Returns the frontmatter manager of Middleman.
     def self.fm_manager
       mm_server.frontmatter_manager
     end
@@ -97,8 +111,8 @@ module Mmdoc
       @title = data['title'] || @basename
     end
 
+    # Public: Returns the contents of the page.
     def content
-      # TODO: Parse
       @content ||= @raw
     end
 
