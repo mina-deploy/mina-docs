@@ -10,6 +10,7 @@ helpers PageHelpers
 helpers MiscHelpers
 
 set :layout, :'_templates/layout'
+set :github, 'nadarei/mina'
 
 configure :build do
   compass_config do |config|
