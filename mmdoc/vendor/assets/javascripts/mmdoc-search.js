@@ -9,7 +9,7 @@ $(function () {
   //     //=> [ { parent: 5, title: 'git:clone', type: 'Git' }, ... ]
   //
   function search(keyword) {
-      var words = keyword.toLowerCase().match(/[A-Za-z0-9]+/g);
+      var words = keyword.toLowerCase().match(/[A-Za-z0-9_]+/g);
 
       // Get results in the form of { page: score }
       // (eg { 5: 1, 6: 1 })
