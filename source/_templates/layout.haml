@@ -82,6 +82,10 @@
         -# Sidebar
         -# ----------------------------------------------------------------------------
         %nav#nav
+          .logo
+            %a{href: rel('/')}
+              = image_tag 'logo.png', width: 150
+
           %nav.parents
             %ul
               - nav_breadcrumbs.each do |page|

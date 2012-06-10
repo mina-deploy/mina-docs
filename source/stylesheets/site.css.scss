@@ -246,6 +246,14 @@ $pad: 40px;
   & {
     font-size: 9pt; }
 
+  .logo {
+    text-align: center;
+    margin-left: -10px;
+    padding-bottom: 10px; }
+
+  .logo a:hover {
+    background: transparent; }
+
   a {
     position: relative;
     line-height: 24px;
