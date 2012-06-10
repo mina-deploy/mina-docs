@@ -46,7 +46,7 @@ module Mmdoc
     #   #    ... }
     #
     def nav_groups
-      children = here.children.any? ? here.children : here.all_siblings
+      children = here.children.any? ? here.children : here.all_siblings.sort
       groups = children.group_by { |p| p.data['group'] }
       groups[here.title] = groups.delete("")  if groups[""]
       groups

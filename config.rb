@@ -18,11 +18,11 @@ end
 # https://github.com/middleman/middleman-blog/blob/master/lib/middleman-blog/commands/article.rb
 #
 # Dir.chdir code_path do
-#   inlines.parse 'lib/mina/helpers.rb', as: :tomdoc
+#   tomdoc.parse 'lib/mina/helpers.rb'
 # end
 #
-# inlines.import 'Mina::DeployHelpers', into: 'source/api/helpers/', type: 'md'
-# inlines.import 'Mina::Helpers', into: 'source/api/helpers/', type: 'md'
+# tomdoc.import 'Mina::DeployHelpers', into: 'source/api/helpers/', type: 'md'
+# tomdoc.import 'Mina::Helpers', into: 'source/api/helpers/', type: 'md'
 #
 # How to use TomDoc:
 # Make a new generator, then
