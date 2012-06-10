@@ -1,3 +1,6 @@
+// Search
+// ----------------------------------------------------------------------------
+
 $(function () {
   // Get the relative prefix for pages.
   var urlPrefix = $("#logo").attr('href');
