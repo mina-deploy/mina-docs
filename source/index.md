@@ -1,7 +1,7 @@
 ---
 title: Mina
 order: 0
-brief: Really fast deployer and server automation tool.
+brief: Really fast deployer and server automation tool
 ---
 
 Mina lets you build and run scripts to manage your app deployments on servers
