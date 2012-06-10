@@ -122,10 +122,8 @@ a:hover { color: $link * 0.9; }
   strong {
     font-weight: bold;
     text-shadow: 1px 1px 0 rgba(white, 0.2);
-    background: $heading; color: #666; }
-
-  span.gt {
-    display: none; }
+    background: $heading;
+    color: #666; }
 }
 
 #area {
@@ -327,6 +325,9 @@ $pad: 40px;
 
     a.active {
       padding-left: 32px; }
+
+    a.active span.back {
+      display: none; }
   }
 }
 
