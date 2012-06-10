@@ -1,4 +1,5 @@
 ENV['github'] ||= 'nadarei/mina'
+# ENV['analytics_id'] ||= 'UA-xoeuou'
 
 task :build do
   cmd = "bundle exec middleman build"

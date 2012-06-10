@@ -22,7 +22,8 @@
     != "<script src='http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js'></script>"
     %script{src: 'http://cdnjs.cloudflare.com/ajax/libs/jquery/1.6.2/jquery.min.js', type: 'text/javascript'}
 
-    = javascript_include_tag 'site.js', id: 'proscribe-js'
+    = javascript_include_tag 'site.js'
+    = google_analytics ENV['analytics_id']  if ENV['analytics_id']
 
   %body
     #top
