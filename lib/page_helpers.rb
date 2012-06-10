@@ -21,4 +21,27 @@ module PageHelpers
   def site_name
     index ? index.title : "Site"
   end
+
+  # Returns groups for the side nav.
+  # Returns a hash with keys as group names, values as Page arrays (Pages).
+  def nav_groups
+    children = here.children.any? ? here.children : here.siblings
+    groups = children.groups
+    groups[here.title] = groups.delete("")  if groups[""]
+    groups
+  end
+
+  # Breadcrumbs for side nav.
+  def nav_breadcrumbs
+    parent = (here.children.any? ? here : here.parent) || here
+    parent.breadcrumbs
+  end
+
+  # Returns a CSS class name for a Page.
+  def item_class(page)
+    [
+      ('active'  if pp.path == here.path),
+      ('more'    if pp.children.any?)
+    ].compact.join(' ')
+  end
 end

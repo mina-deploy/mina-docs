@@ -47,7 +47,6 @@
           #crumbs
             - here.breadcrumbs[0..-2].each do |p|
               %a{href: rel(p.path)}= p
-              %span.gt!= "&rarr;"
 
             %strong= here
 
@@ -78,39 +77,26 @@
                     %span.arrow!= "&rsaquo;"
 
                   = here.title
-                  - if here.data.here_type
-                    %span.type= here.data.here_type
 
         -# ----------------------------------------------------------------------------
         -# Sidebar
         -# ----------------------------------------------------------------------------
         %nav#nav
-          - parent   = (here.children.any? ? here : here.parent) || here
-          - children = here.children.any? ? here.children : here.siblings
-          - groups   = children.groups(:group)
-
           %nav.parents
             %ul
-              - parent.breadcrumbs.each do |pp|
+              - nav_breadcrumbs.each do |page|
                 %li
-                  %a{href: rel(pp.path), class: ('active' if pp.path == here.path)}
+                  %a{href: rel(pp.path), class: item_class(page)}
                     %span.back!= "&lsaquo;"
-                    = pp
+                    = page
 
-          - if groups.any?
-            - groups.each do |name, heres|
-              - name = name ? name : parent.to_s
-              %nav
-                - if name
-                  %h4= name
-                %ul
-                  - heres.each do |pp|
-                    %li
-                      - classes = []
-                      - classes << 'active'  if pp.path == here.path
-                      - classes << 'more'    if pp.children.any?
-
-                      %a{href: rel(pp.path), class: classes.join(' ')}
-                        = pp
+          - nav_groups.each do |name, pages|
+            %nav
+              %h4= name
+              %ul
+                - pages.each do |page|
+                  %li
+                    %a{href: rel(page.path), class: item_class(page)}
+                      = page
 
   = javascript_include_tag 'search_index.js', id: 'proscribe-js'
