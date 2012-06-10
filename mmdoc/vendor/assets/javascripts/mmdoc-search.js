@@ -1,7 +1,8 @@
 $(function () {
   // Get the relative prefix for pages based on the JavaScript's path. Hax!
   // "../javascripts/proscribe.js" means the prefix is "..".
-  var urlPrefix = $("#proscribe-js").attr('src').match(/^(.*)\/?javascripts/)[1];
+  var urlPrefix = $("#logo").attr('href');
+  urlPrefix = urlPrefix.substr(0, urlPrefix.length - 1);
 
   // Returns pages that match a given keyword.
   //
