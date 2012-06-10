@@ -1,6 +1,13 @@
 require 'json'
 
 module Mmdoc
+  # Internal: Builds indices out of pages for use in the JS search engine.
+  #
+  # Example
+  #
+  #   i = IndexBuilder.new(pages)
+  #   i.indices
+  #
   class IndexBuilder
     STOPWORDS = %w(a an and are as at be but by for if in into is) +
                 %w(it no not of on or s such t that the their then) +
@@ -11,6 +18,16 @@ module Mmdoc
       @pages = pages
     end
 
+    # Public: Returns the index data for the given pages.
+    def indices
+      {
+        :pages => pages_index,
+        :search => search_index
+      }
+    end
+
+    # Public: Builds the page index.
+    # Returns an array of hashes, each hash describing a page.
     def pages_index
       @pages.inject([]) { |h, p|
         h << {
@@ -22,12 +39,8 @@ module Mmdoc
       }
     end
 
-    def urls
-      @urls ||= @pages.map { |p| p.path }
-    end
-
+    # Public: Build a search index (hash of hashes of words and page indices)
     def search_index
-      # Build a search index (hash of hashes of words and page indices)
       search_index = Hash.new { |hash, k| hash[k] = Hash.new { |hh, kk| hh[kk] = 0 } }
 
       @pages.each do |p|
@@ -51,26 +64,33 @@ module Mmdoc
       search_index
     end
 
-    def indices
-      {
-        :pages => pages_index,
-        :search => search_index
-      }
-    end
-
   private
 
-    # "Hello world" => ["hello", "world" ]
+    # Internal: returns URL paths for pages.
+    def urls
+      @urls ||= @pages.map { |p| p.path }
+    end
+
+    # Internal: Splits a string into words.
+    #
+    #   "Hello world" => ["hello", "world" ]
+    #
     def words(str)
       str.to_s.downcase.scan(/[A-Za-z0-9\_]+/)
     end
 
-    # "hello" => ["he", "hel", "hell", "hello" ]
+    # Internal: Splits a single word into fuzzies.
+    #
+    #   "hello" => ["he", "hel", "hell", "hello" ]
+    #
     def fuzzies(str)
       str = str.to_s.downcase; (1...str.size).map { |n| str[0..n] }
     end
 
-    # "hello world" => ["he", "hel", "hell", "hello", "wo", "wor", "worl", "world" ]
+    # Internal: Splits a multi-word string into fuzzies.
+    #
+    #   "hello world" => ["he", "hel", "hell", "hello", "wo", "wor", "worl", "world" ]
+    #
     def fuzzy_words(str)
       words(str).map { |word| fuzzies(word)  if word.size > 2 and !STOPWORDS.include?(word) }.compact.flatten
     end

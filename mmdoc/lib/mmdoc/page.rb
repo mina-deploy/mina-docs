@@ -29,6 +29,8 @@ module Mmdoc
   #   page.children          #=> Array
   #   page.siblings          #=> Array
   #
+  # The arrays returned are of type Pages.
+  #
   class Page
     attr_reader :path
     attr_reader :basename
