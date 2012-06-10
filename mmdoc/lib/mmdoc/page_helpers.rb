@@ -11,7 +11,7 @@ module Mmdoc
 
     # Public: Returns an array of all pages in the site.
     def all_pages
-      sitemap.resources
+      sitemap.resources.select { |res| res.html? }
     end
 
     # Returns index data for the entire site.
