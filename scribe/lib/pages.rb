@@ -4,7 +4,6 @@ class Pages < Array
   end
 
   def indices
-    require 'lib/index_builder'
     i = IndexBuilder.new(self)
     i.indices
   end

@@ -12,6 +12,7 @@ module ScribeExtension
       require root('pages')
       require root('page_helpers')
       require root('misc_helpers')
+      require root('index_builder')
 
       app.helpers PageHelpers
       app.helpers MiscHelpers
