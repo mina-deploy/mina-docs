@@ -3,7 +3,7 @@ ENV['github'] ||= 'nadarei/mina'
 
 task :build do
   cmd = "bundle exec middleman build"
-  cmd = "analytics=#{ENV['analytics_id']} #{cmd}" if ENV['analytics_id']
+  cmd = "analytics_id=#{ENV['analytics_id'].inspect} #{cmd}" if ENV['analytics_id']
   system cmd
   raise "Failed" unless $?.to_i == 0
 end
