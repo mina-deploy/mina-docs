@@ -8,8 +8,9 @@ The deploy procedures make the assumption that you have a folder like so:
 
     /var/www/flipstack.com/     # The deploy_to path
      |-  releases/              # Holds releases, one subdir per release
-     |   |- 2012-06-12-838948
-     |   |- 2012-06-23-034828
+     |   |- 1
+     |   |- 2
+     |   |- 3
      |   '- ...
      |-  shared/                # Holds files shared between releases
      |   |- logs/               # Log files are usually stored here
