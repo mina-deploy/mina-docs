@@ -190,6 +190,11 @@ $pad: 40px;
   right: 0;
   top: 0;
   z-index: 0;
+  opacity: 0.3;
+  @include transition(opacity 200ms linear);
+
+  &:hover {
+    opacity: 1.0; }
 
   img {
     border: 0; } }
