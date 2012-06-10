@@ -185,6 +185,15 @@ $pad: 40px;
     float: left; }
 }
 
+#content a.github {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 0;
+
+  img {
+    border: 0; } }
+
 #content>div {
   float: left;
   width: 100%;
