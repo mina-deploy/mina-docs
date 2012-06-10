@@ -1,3 +1,9 @@
+PATH
+  remote: ./scribe
+  specs:
+    scribe (0.0.1)
+      middleman-core (>= 3.0.0.rc.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -104,3 +110,4 @@ PLATFORMS
 
 DEPENDENCIES
   middleman (= 3.0.0.rc.1)
+  scribe!
