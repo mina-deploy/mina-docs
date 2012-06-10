@@ -86,7 +86,7 @@
             %ul
               - nav_breadcrumbs.each do |page|
                 %li
-                  %a{href: rel(pp.path), class: item_class(page)}
+                  %a{href: rel(page.path), class: item_class(page)}
                     %span.back!= "&lsaquo;"
                     = page
 

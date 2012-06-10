@@ -40,8 +40,8 @@ module PageHelpers
   # Returns a CSS class name for a Page.
   def item_class(page)
     [
-      ('active'  if pp.path == here.path),
-      ('more'    if pp.children.any?)
+      ('active'  if page.path == here.path),
+      ('more'    if page.children.any?)
     ].compact.join(' ')
   end
 end
