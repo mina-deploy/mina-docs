@@ -1,6 +1,5 @@
 $(function () {
-  // Get the relative prefix for pages based on the JavaScript's path. Hax!
-  // "../javascripts/proscribe.js" means the prefix is "..".
+  // Get the relative prefix for pages.
   var urlPrefix = $("#logo").attr('href');
   urlPrefix = urlPrefix.substr(0, urlPrefix.length - 1);
 
