@@ -13,24 +13,34 @@ In your project, type `mina init` to create a sample of this file.
     $ mina init
     Created config/deploy.rb.
 
+<br clear='all' />
+
 This is just a Rake file with tasks! See [About deploy.rb](#about_deployrb) for 
-more info on what *deploy.rb* is.
+more info on what *deploy.rb* is. You will want to at least configure your
+server:
+
+    # config/deploy.rb
+    set :user, 'username'
+    set :domain, 'your.server.com'
+    set :deploy_to, '/var/www/flipstack.com'
+    ...
 
 ### Step 2: Set up your server
 
 Make a directory in your server called `/var/www/flipstack.com` (in *deploy_to*)
 change it's ownership to the correct user.
 
-    # SSH into your server, then:
-    $ mkdir /var/www/flipstack.com
-    $ chown -R username /var/www/flipstack.com
+    $ ssh username@your.server.com
 
-    # Make sure 'username' is the same as what's on deploy.rb
+    # Once in your server, create the deploy folder:
+    ~@your.server.com$ mkdir /var/www/flipstack.com
+    ~@your.server.com$ chown -R username /var/www/flipstack.com
 
 ### Step 3: Run 'mina setup'
 
-Now do `mina setup` to set up the [folder structure](#directory_structure) in this
-path. This will connect to your server via SSH and create the right directories.
+Back at your computer, do `mina setup` to set up the [folder 
+structure](#directory_structure) in this path. This will connect to your server 
+via SSH and create the right directories.
 
     $ mina setup
     -----> Creating folders... done.

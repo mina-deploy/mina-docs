@@ -14,7 +14,7 @@ $(function() {
       // Strip a first line that's only $
       var html = text.replace(/^\$*\n/, "");
       // Highlight the commands
-      var html = html.replace(/((?:^|\n)\$ [^\n]+)$/mg, "<strong>$1</strong>");
+      var html = html.replace(/((?:^|\n)(?:\$ |~)[^\n]+)$/mg, "<strong>$1</strong>");
       // Comments
       var html = html.replace(/((?:^|\n)#[^\n]*)$/mg, "<em>$1</em>");
       $(this).html(html);
