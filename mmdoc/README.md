@@ -19,7 +19,7 @@ Then copy the following files to your Middleman project:
  * `source/javascripts/site.js`
  * `Rakefile`
 
-Now start making `.html.md` files (or whatever markup language you want) and add
+Now start making `.md` files (or whatever markup language you want) and add
 YAML frontmatters. Only `title` is required:
 
 ``` yaml
