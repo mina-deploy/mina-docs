@@ -1,15 +1,8 @@
 module Mmdoc
-  # Public: Helpers for pages.
+  # Helpers for pages.
   # These helpers are available for use on templates.
   module PageHelpers
-    # Public: Returns the current page.
-    #
-    # Returns a Page instance.
-    def here
-      sitemap.find_resource_by_destination_path(request.path)
-    end
-
-    # Public: Returns an array of all pages in the site.
+    # Returns an array of all pages in the site.
     def all_pages
       sitemap.resources.select { |res| res.html? }
     end
@@ -20,22 +13,22 @@ module Mmdoc
       i.indices
     end
 
-    # Public: Returns the top-level pages. Best used for top-level navigation.
+    # Returns the top-level pages. Best used for top-level navigation.
     def roots
       all_pages.select { |page| page.root? }
     end
 
-    # Public: Returns the main index page.
+    # Returns the main index page.
     def index
       sitemap.find_resource_by_destination_path '/index.html'
     end
 
-    # Public: Returns the name of the site.
+    # Returns the name of the site.
     def site_name
       index ? index.title : "Site"
     end
 
-    # Public: Returns groups for the side nav.
+    # Returns groups for the side nav.
     # Returns a hash with keys as group names, values as Page arrays (Pages).
     #
     # Example
@@ -46,6 +39,7 @@ module Mmdoc
     #   #    ... }
     #
     def nav_groups
+      here = current_page
       children = here.children.any? ? here.children : here.all_siblings
       children = children.sort
       groups = children.group_by { |p| p.data['group'] }
@@ -53,14 +47,15 @@ module Mmdoc
       groups
     end
 
-    # Public: Breadcrumbs for side nav.
+    # Breadcrumbs for side nav.
     # Returns an array of Pages, starting from the top-level page.
     def nav_breadcrumbs
+      here = current_page
       parent = (here.children.any? ? here : here.parent) || here
       parent.breadcrumbs
     end
 
-    # Public: Returns a CSS class name for a Page.
+    # Returns a CSS class name for a Page.
     #
     # page - The page instance.
     #

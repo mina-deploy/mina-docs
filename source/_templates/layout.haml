@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title= here.title
+    %title= current_page.title
 
     %meta(charset='UTF-8')
     -# Use the latest IE engine, or Chrome frame.
@@ -11,10 +11,10 @@
     %meta(name='viewport' content='width=device-width, initial-scale=1.0')
 
     -# Standard SEO data
-    - if here.data['keywords']
-      %data{:name => 'keywords', :content => here.data['keywords'].join(', ')}
-    - if here.data['brief']
-      %data{:name => 'description', :content => here.data['brief']}
+    - if current_page.data['keywords']
+      %data{:name => 'keywords', :content => current_page.data['keywords'].join(', ')}
+    - if current_page.data['brief']
+      %data{:name => 'description', :content => current_page.data['brief']}
 
     = stylesheet_link_tag 'site.css'
 
@@ -45,20 +45,20 @@
               %img(src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub")
 
           #crumbs
-            - here.breadcrumbs[0..-2].each do |p|
+            - current_page.breadcrumbs[0..-2].each do |p|
               = link_to p, p.url
 
-            %strong= here
+            %strong= current_page
 
           %hgroup
-            %h1= here.title
-            - if here.data['brief']
-              %h5= here.data['brief']
+            %h1= current_page.title
+            - if current_page.data['brief']
+              %h5= current_page.data['brief']
 
           .content
-            - if here.data['usage']
+            - if current_page.data['usage']
               %h2 Usage
-              %pre= here.data['usage']
+              %pre= current_page.data['usage']
 
             != yield
 
@@ -68,7 +68,7 @@
             %section.footer
               .left
                 %strong
-                  - here.breadcrumbs[0..-2].each do |page|
+                  - current_page.breadcrumbs[0..-2].each do |page|
                     - html = capture_haml do
                       = page.title
                       - if page.data['type']
@@ -78,7 +78,7 @@
 
                     %span.arrow!= "&rsaquo;"
 
-                  = here.title
+                  = current_page.title
 
         -# ----------------------------------------------------------------------------
         -# Sidebar
