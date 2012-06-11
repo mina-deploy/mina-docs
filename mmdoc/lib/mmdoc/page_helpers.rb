@@ -61,6 +61,7 @@ module Mmdoc
     #
     # Returns a string to be used in an HTML tag's `class` attribute.
     def item_class(page)
+      here = current_page
       [
         ('active'  if page.path == here.path),
         ('more'    if page.children.any?)
