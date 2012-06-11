@@ -1,3 +1,7 @@
+# Okay!
+#
+# rake deploy version=0.1.1
+
 ENV['github'] ||= 'nadarei/mina'
 ENV['analytics_id'] ||= 'UA-32476157-1'
 
@@ -10,5 +14,7 @@ end
 
 desc "Updates online documentation"
 task :deploy => :build do
-  system "git update-ghpages #{ENV['github']} -i build"
+  cmd = "git update-ghpages #{ENV['github']} -i build"
+  cmd << " -p #{ENV['version']}" if ENV['version']
+  system cmd
 end

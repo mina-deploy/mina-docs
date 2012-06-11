@@ -5,14 +5,17 @@ Yes.
 Development
 -----------
 
-    # Start a local server
-    $ bundle exec middleman
+``` bash
+# Start a local server
+$ bundle exec middleman
 
-    # Build docs
-    $ bundle exec rake build
+# Build docs
+$ bundle exec rake build
 
-    # Upload docs
-    $ bundle exec rake deploy
+# Upload docs
+$ bundle exec rake deploy
+$ bundle exec rake deploy version=0.1.1
+```
 
 To do
 -----
