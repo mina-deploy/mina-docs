@@ -53,6 +53,7 @@ All your settings are stored in a Ruby file
 
     # config/deploy.rb
     require 'mina/git'
+    require 'mina/bundler'
 
     set :domain, 'your.server.com'
     set :user, 'flipstack'
