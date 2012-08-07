@@ -6,6 +6,9 @@ group: Misc
 
 ## Upgrading to v0.2.0
 
+Note: these are upgrade notes to the *unreleased* v0.2.0 version due to be
+released soon.
+
 Mina v0.2.0 is backwards-compatible, except for the deprecated
 `:revision` setting (which wasn't widely used anyway). However, Mina 0.2.0 adds
 new features and conveniences that may make it easier to
