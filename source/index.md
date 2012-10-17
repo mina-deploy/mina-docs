@@ -74,7 +74,7 @@ All your settings are stored in a Ruby file
 In this file, you will define tasks that *queue* up commands to be ran
 remotely via SSH.
 
-Mina is built on [Rake](http://http://rake.rubyforge.org/). Mina configuration
+Mina is built on [Rake](http://rake.rubyforge.org/). Mina configuration
 files are simply Rake files.
 
 See [About deploy.rb](about_deploy_rb.html) for more information on
