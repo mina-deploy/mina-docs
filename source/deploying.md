@@ -16,7 +16,7 @@ you.
     task :deploy do
       deploy do
         # Put things that prepare the empty release folder here.
-        # Commands queued here will be ran on a new release directory.
+        # Commands queued here will be run on a new release directory.
         invoke :'git:clone'
         invoke :'bundle:install'
 
@@ -83,7 +83,7 @@ commands to restart the webserver process. Once this in complete, you're done!
 ### What about failure?
 
 If it fails at any point, the release path will be deleted. If any commands are
-queued using the `to :clean` block, they will be ran. It will be as if nothing
+queued using the `to :clean` block, they will be run. It will be as if nothing
 happened. Lets see what happens if a build fails:
 
     $

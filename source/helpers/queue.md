@@ -3,7 +3,7 @@ title: queue
 group: Helpers
 ---
 
-This queues code to be ran to the current code bucket (defaults to `:default`).
+This queues code to be run to the current code bucket (defaults to `:default`).
 At the end of the execution, before Mina exits, all queued commands are executed
 remotely.
 

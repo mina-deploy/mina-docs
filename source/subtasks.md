@@ -22,5 +22,5 @@ task.
     end
 
 In this example above, if you type `mina down`, it simply invokes the other
-subtasks which queues up their commands. The commands will be ran after
+subtasks which queues up their commands. The commands will be run after
 everything.
