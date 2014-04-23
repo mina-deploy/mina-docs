@@ -2,8 +2,8 @@
 #
 # rake deploy version=0.1.1
 
-ENV['github'] ||= 'nadarei/mina'
-ENV['analytics_id'] ||= 'UA-32476157-1'
+ENV['github'] ||= 'mina-deploy/mina'
+# ENV['analytics_id'] ||= 'UA-32476157-1'
 
 task :build do
   cmd = "bundle exec middleman build --debug"
