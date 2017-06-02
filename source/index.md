@@ -40,7 +40,7 @@ server.
     -----> Done. Deployed v4
 
 Compare this to the likes of Vlad or Capistrano, where each command
-is ran separately on their own SSH sessions. Mina only creates *one* SSH
+is run in a separate SSH session. Mina only creates *one* SSH
 session per deploy, minimizing the SSH connection overhead.
 
 See [the deploying guide](deploying.html) for more information.
@@ -71,7 +71,7 @@ All your settings are stored in a Ruby file
       queue 'sudo service restart apache'
     end
 
-In this file, you will define tasks that *queue* up commands to be ran
+In this file, you will define tasks that *queue* up commands to be run
 remotely via SSH.
 
 Mina is built on [Rake](http://http://rake.rubyforge.org/). Mina configuration

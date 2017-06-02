@@ -19,7 +19,7 @@ example, it provides the `mina restart` command.
 
 The magic of Mina is in the new commands it gives you.
 
-The `queue` command queues up Bash commands to be ran on the remote server.
+The `queue` command queues up Bash commands to be run on the remote server.
 If you invoke `mina restart`, it will invoke the task above and run the queued
 commands on the remote server `your.server.com` via SSH.
 
