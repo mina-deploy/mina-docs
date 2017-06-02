@@ -13,11 +13,11 @@ task.
       invoke :restart
     end
 
-    task :maintenance_on
+    task :maintenance_on do
       queue 'touch maintenance.txt'
     end
 
-    task :restart
+    task :restart do
       queue 'sudo service restart apache'
     end
 
