@@ -11,7 +11,8 @@ tag, or a branch.
     require 'mina/git'
 
     set :repository, 'https://github.com/you/your-app.git'
-    set :revision, 'master'  # Optional
+    set :deploy_to, '/var/www/flipstack.me'
+    set :commit, '46f2d834021914d529c8aa471a7ce7be6574c983'  # Optional
 
 Optional. This option is only relevant when you load the Git addon using
 `require 'mina/git'`.
